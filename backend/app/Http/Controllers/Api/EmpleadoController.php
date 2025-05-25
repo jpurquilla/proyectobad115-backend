@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Empleado;
 use Illuminate\Http\Request;
 
 class EmpleadoController extends Controller
@@ -12,9 +13,19 @@ class EmpleadoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function mostrarVista()
+    {
+        $empleados = Empleado::all();
+        return view('empleados', compact('empleados'));
+    }
+
+
     public function index()
     {
         //
+         return response()->json(Empleado::all(), 200);
+          
     }
 
     /**
@@ -26,6 +37,8 @@ class EmpleadoController extends Controller
     public function store(Request $request)
     {
         //
+        $empleado = Empleado::create($request->all());
+        return response()->json($empleado, 201);
     }
 
     /**
@@ -37,6 +50,9 @@ class EmpleadoController extends Controller
     public function show($id)
     {
         //
+        $empleado = Empleado::find($id);
+        if (!$empleado) return response()->json(['mensaje' => 'Empleado no encontrado'], 404);
+        return response()->json($empleado, 200);
     }
 
     /**
@@ -49,6 +65,11 @@ class EmpleadoController extends Controller
     public function update(Request $request, $id)
     {
         //
+         $empleado = Empleado::find($id);
+        if (!$empleado) return response()->json(['mensaje' => 'Empleado no encontrado'], 404);
+
+        $empleado->update($request->all());
+        return response()->json($empleado, 200);
     }
 
     /**
@@ -59,6 +80,11 @@ class EmpleadoController extends Controller
      */
     public function destroy($id)
     {
+        $empleado = Empleado::find($id);
+        if (!$empleado) return response()->json(['mensaje' => 'Empleado no encontrado'], 404);
+
+        $empleado->delete();
+        return response()->json(['mensaje' => 'Empleado eliminado'], 200);
         //
     }
 }

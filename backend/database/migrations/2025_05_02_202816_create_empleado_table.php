@@ -13,7 +13,7 @@ class CreateEmpleadoTable extends Migration
      */
     public function up()
     {
-        Schema::create('empleado', function (Blueprint $table) {
+        Schema::create('empleados', function (Blueprint $table) {
             $table->id('idempleado');
             $table->string('primer_nombre', 20);
             $table->string('segundo_nombre', 20)->nullable();
