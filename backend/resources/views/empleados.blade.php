@@ -39,6 +39,8 @@
                     <td>{{ $empleado->idempleado }}</td>
                     <td>{{ $empleado->primer_nombre }} {{ $empleado->segundo_nombre }}</td>
                     <td>{{ $empleado->primer_apellido }} {{ $empleado->segundo_apellido }}</td>
+                    <td><a href="{{ route('empleados.edit', $empleado->idempleado) }}" class="btn btn-warning btn-sm">Editar</a></td>
+
                 </tr>
             @endforeach
         </tbody>

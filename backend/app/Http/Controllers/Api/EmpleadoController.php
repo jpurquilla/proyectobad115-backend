@@ -14,18 +14,13 @@ class EmpleadoController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function mostrarVista()
-    {
-        $empleados = Empleado::all();
-        return view('empleados', compact('empleados'));
-    }
 
 
     public function index()
     {
-        //
-         return response()->json(Empleado::all(), 200);
-          
+        $empleados = Empleado::all();
+        return view('empleados', compact('empleados'));
+    
     }
 
     /**
@@ -38,6 +33,8 @@ class EmpleadoController extends Controller
     {
         $empleado = Empleado::create($request->all());
         return redirect()->route('empleados.vista')->with('success', 'Empleado agregado exitosamente');
+       // return redirect()->route('empleados.index')->with('success', 'Empleado agregado exitosamente');
+
     }
 
     /**
@@ -61,15 +58,19 @@ class EmpleadoController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+
+     public function update(Request $request, $id)
     {
-        //
-         $empleado = Empleado::find($id);
-        if (!$empleado) return response()->json(['mensaje' => 'Empleado no encontrado'], 404);
+        $empleado = Empleado::find($id);
+        if (!$empleado) return redirect()->route('empleados.index')->with('error', 'Empleado no encontrado');
 
         $empleado->update($request->all());
-        return response()->json($empleado, 200);
+        return redirect()->route('empleados.vista')->with('success', 'Empleado actualizado correctamente');
+        //return redirect()->route('empleados.index')->with('success', 'Empleado actualizado correctamente');
+
     }
+
+
 
     /**
      * Remove the specified resource from storage.
@@ -86,4 +87,17 @@ class EmpleadoController extends Controller
         return response()->json(['mensaje' => 'Empleado eliminado'], 200);
         //
     }
+
+    public function edit($id)
+    {
+        $empleado = Empleado::find($id);
+        if (!$empleado) return redirect()->route('empleados.index')->with('error', 'Empleado no encontrado');
+
+        return view('editarempleado', compact('empleado'));
+
+
+    }
+
+
+
 }
