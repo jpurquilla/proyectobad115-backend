@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\EmpleadoController;
 
 
 Route::get('/empleados', [EmpleadoController::class, 'mostrarVista'])->name('empleados.vista');
+Route::post('/empleados', [EmpleadoController::class, 'store'])->name('empleados.store');
 
 
 

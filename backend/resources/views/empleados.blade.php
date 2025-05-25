@@ -6,6 +6,24 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 </head>
 <body class="container mt-4">
+        <form action="{{ route('empleados.store') }}" method="POST">
+            @csrf
+            <label>Primer Nombre:</label>
+            <input type="text" name="primer_nombre" required>
+            
+            <label>Primer Apellido:</label>
+            <input type="text" name="primer_apellido" required>
+
+            <label>Género:</label>
+            <select name="idcatalogogenero">
+                <option value="1">Masculino</option>
+                <option value="2">Femenino</option>
+            </select>
+
+            <button type="submit">Guardar</button>
+        </form>
+
+
     <h1 class="text-center">Lista de Empleados</h1>
     <table class="table table-striped">
         <thead>
@@ -25,5 +43,6 @@
             @endforeach
         </tbody>
     </table>
+
 </body>
 </html>

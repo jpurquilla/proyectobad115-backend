@@ -20,10 +20,10 @@ class CreateEmpleadoTable extends Migration
             $table->string('primer_apellido', 20);
             $table->string('segundo_apellido', 20)->nullable();
             $table->string('apellido_casada', 20)->nullable();
-            $table->unsignedBigInteger('idcatalogogenero');
-            $table->unsignedBigInteger('iddetallegenero');
-            $table->unsignedBigInteger('idcatalogoestadocivil');
-            $table->unsignedBigInteger('iddetalleestadocivil');
+            $table->unsignedBigInteger('idcatalogogenero')->nullable();
+            $table->unsignedBigInteger('iddetallegenero')->nullable();
+            $table->unsignedBigInteger('idcatalogoestadocivil')->nullable();
+            $table->unsignedBigInteger('iddetalleestadocivil')->nullable();
             $table->timestamps();
 
        //     $table->foreign(['idcatalogogenero', 'iddetallegenero'])

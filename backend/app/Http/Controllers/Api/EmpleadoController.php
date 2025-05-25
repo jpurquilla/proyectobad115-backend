@@ -36,9 +36,8 @@ class EmpleadoController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $empleado = Empleado::create($request->all());
-        return response()->json($empleado, 201);
+        return redirect()->route('empleados.vista')->with('success', 'Empleado agregado exitosamente');
     }
 
     /**
