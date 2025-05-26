@@ -19,6 +19,7 @@ use App\Http\Controllers\Api\TipodescuentoController;
 use App\Http\Controllers\Api\Planilla_aportacionesController;
 use App\Http\Controllers\Api\Planilla_detalle_descuentosController;
 use App\Http\Controllers\Api\Planilla_detalle_ingresosController;
+use App\Http\Controllers\Api\DescuentoController;
 
 
 
@@ -54,6 +55,6 @@ Route::apiResource('tipo_descuentos', TipoDescuentoController::class);
 Route::apiResource('planilla_aportaciones', Planilla_AportacionesController::class);
 Route::apiResource('planilla_detalle_descuentos', Planilla_Detalle_DescuentosController::class);
 Route::apiResource('planilla_detalle_ingresos', Planilla_Detalle_IngresosController::class);
-
+Route::apiResource('descuentos', DescuentoController::class);
 
 
